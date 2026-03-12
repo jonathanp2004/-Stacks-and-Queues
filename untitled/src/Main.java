@@ -32,6 +32,15 @@ public String isBalanced(String s){
     }
 }
 
+public String decodeString(String s){
+
+    return null;
+}
+
+
+
+
+
 
 public static void main(String[] args){
     Main main = new Main();
