@@ -34,7 +34,40 @@ public String isBalanced(String s){
 
 public String decodeString(String s){
 
-    return null;
+    LinkedList<Integer> numList = new LinkedList<>();
+    LinkedList<String> stringList = new LinkedList<>();
+    int currentNum = 0;
+    String currentString = "";
+
+    for (int i = 0; i < s.length(); i++) {
+        char c = s.charAt(i);
+        if (Character.isDigit(c)){
+            currentNum = currentNum * 10 + (c -'0');
+        } else if (c == '[') {
+             numList.add(0,currentNum);
+             stringList.add(0,currentString);
+
+             currentNum = 0;
+             currentString = "";
+
+        } else if (Character.isLetter(c)) {
+
+            currentString = currentString + c;
+            
+        } else if (c == ']') {
+            int n = numList.remove(0);
+           String m = stringList.remove(0);
+           String newString = "";
+
+            for (int j = 0; j < n; j++) {
+                newString += currentString;
+
+            }
+            currentString = m + newString;
+
+        }
+    }
+    return currentString;
 }
 
 
@@ -47,11 +80,11 @@ public static void main(String[] args){
 
     String s = "{{[[(()<>)]]}}";
     String v = "{[(])}";
-    String h = "{[()]}";
+    String forDecode = "22[abc]3[cd]ef";
 
     String result = main.isBalanced(s);
     String result1 = main.isBalanced(v) ;
-    String result2 = main.isBalanced(h);
+    String result2 = main.decodeString(forDecode);
 
 
     System.out.println(result);
